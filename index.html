@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday Flipbook 🎂</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- jQuery (Turn.js dependency) -->
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <!-- Turn.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    /* Tailwind custom animations */
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      0%,100% { opacity: 0.2; transform: scale(0.8);}
+      50% { opacity: 1; transform: scale(1.1);}
+    }
+    .animate-twinkle {
+      animation: twinkle 2s infinite ease-in-out;
+    }
+    @keyframes rise {
+      to { transform: translateY(-140vh) scale(1.05); opacity: .9; }
+    }
+    .balloon {
+      position: absolute;
+      width: 60px; height: 80px;
+      border-radius: 50% 50% 48% 48%;
+      background: #FF6B6B;
+      bottom: -120px;
+      animation: rise var(--dur,5s) linear forwards;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,.2));
+    }
+    .balloon::after {
+      content: "";
+      position: absolute;
+      left: 50%; bottom: -50px;
+      width: 2px; height: 50px;
+      background: rgba(0,0,0,.6);
+      transform: translateX(-50%);
+    }
+    .pop {
+      animation: pop .4s ease forwards;
+    }
+    @keyframes pop {
+      0% { transform: scale(1); opacity: 1;}
+      100% { transform: scale(0.2); opacity: 0;}
+    }
+  </style>
+</head>
+<body class="relative min-h-screen overflow-x-hidden bg-[url('./bg.jpg')] bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center font-sans">
+<audio id="bg-music" autoplay loop>
+  <source src="./happybirthday.mp3" type="audio/mpeg">
+  <script>
+  const audio = document.getElementById("bg-music");
+  
+  // Set volume between 0.0 (silent) and 1.0 (full volume)
+  audio.volume = 0.5; // 30% volume
+</script>
+  Your browser does not support the audio element.
+</audio>
+
+<audio autoplay loop>
+ 
+  <source src="./ha.opus" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+  <!-- Background fireworks (SVG circles blinking) -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+<!-- 1 -->
+<svg class="absolute w-32 h-32 text-yellow-400 top-10 left-10 animate-twinkle" fill="currentColor" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="12"/>
+</svg>
+
+<!-- 2 -->
+<svg class="absolute w-20 h-20 text-pink-400 bottom-20 left-1/4 animate-twinkle delay-1000" fill="currentColor" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="12"/>
+</svg>
+
+<!-- 3 -->
+<svg class="absolute w-28 h-28 text-blue-400 top-1/3 right-12 animate-twinkle delay-500" fill="currentColor" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="12"/>
+</svg>
+
+<!-- 4 -->
+<svg class="absolute w-16 h-16 text-green-400 bottom-10 right-10 animate-twinkle delay-700" fill="currentColor" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="12"/>
+</svg>
+
+<!-- 5 -->
+<svg class="absolute w-24 h-24 text-purple-400 top-1/4 left-1/2 animate-twinkle delay-300" fill="currentColor" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="12"/>
+</svg>
+
+<!-- 6 -->
+<svg class="absolute w-12 h-12 text-orange-400 bottom-1/4 right-1/3 animate-twinkle delay-1500" fill="currentColor" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="12"/>
+</svg>
+
+<!-- 7 -->
+<svg class="absolute w-20 h-20 text-red-400 top-1/2 left-5 animate-twinkle delay-800" fill="currentColor" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="12"/>
+</svg>
+
+<!-- 8 -->
+<svg class="absolute w-28 h-28 text-teal-400 bottom-1/3 left-10 animate-twinkle delay-200" fill="currentColor" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="12"/>
+</svg>
+
+<!-- 9 -->
+<svg class="absolute w-16 h-16 text-pink-300 top-5 right-1/4 animate-twinkle delay-900" fill="currentColor" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="12"/>
+</svg>
+
+<!-- 10 -->
+<svg class="absolute w-24 h-24 text-blue-300 bottom-5 left-1/2 animate-twinkle delay-1200" fill="currentColor" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="12"/>
+</svg>
+
+<!-- 11 -->
+<svg class="absolute w-14 h-14 text-yellow-300 top-3/4 right-5 animate-twinkle delay-400" fill="currentColor" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="12"/>
+</svg>
+
+<!-- 12 -->
+<svg class="absolute w-16 h-16 text-indigo-400 bottom-1/6 right-1/2 animate-twinkle delay-600" fill="currentColor" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="12"/>
+</svg>
+
+  </div>
+<!-- Party poppers (floating) -->
+  <img src="https://img.icons8.com/emoji/96/party-popper.png" alt="poppers" class="absolute top-8 left-8 animate-float w-16 h-16"/>
+  <img src="https://img.icons8.com/emoji/96/party-popper.png" alt="poppers" class="absolute top-8 right-8 animate-float w-16 h-16"/>
+  <img src="https://img.icons8.com/emoji/96/party-popper.png" alt="poppers" class="absolute bottom-10 right-10 animate-float w-20 h-20"/>
+  <img src="https://img.icons8.com/emoji/96/party-popper.png" alt="poppers" class="absolute bottom-10 left-10 animate-float w-20 h-20"/>
+
+  <!-- Flipbook -->
+  <div class="z-10  ">
+   
+    <div id="flipbook" class="">
+
+      <!-- Cover -->
+<div class="page flex flex-col items-center justify-center bg-gradient-to-br from-white to-pink-100 p-8">
+  <h1 class="text-3xl md:text-5xl font-bold text-[#FFC502] mb-4 text-center"> To Worst Dancer i ever see 😂</h1>
+  <p class="text-gray-600 text-lg text-center">Tap next to see what i feel about you </p>
+</div>
+            <!-- video -->
+<div class="page flex flex-col items-center justify-center bg-white p-8">
+ <video autoplay loop muted playsinline class="w-full h-full object-cover rounded-xl shadow-xl">
+      <source src="video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+</div>
+<!-- Page 2 -->
+<div class="page p-6 flex flex-col items-center bg-white">
+  <img src="./1.jpg" class="rounded-xl mb-4 w-full h-64 object-cover"/>
+  <h2 class="text-2xl font-semibold text-[#FFC502] mb-2">My headache 🤯</h2>
+  <p class="text-gray-700 text-center">Everytime we are doing project your i will do myself give me Headache😂</p>
+</div>
+
+<!-- Page 3 -->
+<div class="page p-6 flex flex-col items-center bg-white">
+  <img src="./2.jpg" class="rounded-xl mb-4 w-full h-64 object-cover"/>
+  <h2 class="text-2xl font-semibold text-[#FFC502] mb-2">Professional Overthinker 🧠</h2>
+  <p class="text-gray-700 text-center">You stress over everything specially on divi project i do but somehow still manage to look cute doing it 😆</p>
+</div>
+
+<!-- Page 4 -->
+<div class="page p-6 flex flex-col items-center bg-white">
+  <img src="./4.jpg" class="rounded-xl mb-4 w-full h-64 object-cover"/>
+  <h2 class="text-2xl font-semibold text-[#FFC502] mb-2">Drama Queen 👑</h2>
+  <p class="text-gray-700 text-center">When ever you need me to do something you become so inoccent such a drama queen😂</p>
+</div>
+
+<!-- Page 5 -->
+<div class="page p-6 flex flex-col items-center bg-white">
+  <img src="./b.jpg" class="rounded-xl mb-4 w-full h-64 object-cover"/>
+  <h2 class="text-2xl font-semibold text-[#FFC502] mb-2">CEO of Bad Decisions </h2>
+  <p class="text-gray-700 text-center">Top of list the bag project deal 😜</p>
+</div>
+
+<!-- Page 6 -->
+<div class="page p-6 flex flex-col items-center bg-white">
+  <img src="./5.jpg" class="rounded-xl mb-4 w-full h-64 object-cover"/>
+  <h2 class="text-2xl font-semibold text-[#FFC502] mb-2">Still i love you BFF❤️ </h2>
+  <p class="text-gray-700 text-center">Thanks for listening to all my nonsense and still not blocking me 🤭</p>
+</div>
+<div class="page p-6 flex flex-col items-center bg-white">
+  <img src="./cake.jpg" class="rounded-xl mb-4 w-full h-64 object-cover"/>
+  <h2 class="text-2xl font-semibold text-[#FFC502] mb-2">Now i desrve this cake 😜 </h2>
+  <p class="text-gray-700 text-center">So PS5 + Boots + cake 😜</p>
+</div>
+
+    </div>
+
+    <!-- Controls -->
+    <div class="flex justify-end items-center gap-4 mt-6">
+      <button id="prevBtn" class="px-5 py-2 bg-white text-[#FFC502] rounded-lg shadow  transition">Prev</button>
+      <button id="nextBtn" class="px-5 py-2 bg-white text-[#FFC502] rounded-lg shadow  transition"> Next</button>
+      <!-- <span id="pageIndicator" class="text-[#FFC502] font-semibold"></span> -->
+    </div>
+  </div>
+
+  
+
+  <!-- Balloon layer -->
+  <div id="balloonLayer" class="absolute inset-0 pointer-events-none z-20"></div>
+
+  <!-- Hidden messages grid -->
+<div id="messagesGrid" 
+  class="bg-[url('./bg2.png')] bg-repeat bg-contain bg-left absolute inset-0 
+         grid place-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
+         gap-4 sm:gap-5 lg:gap-6 p-4 sm:p-6 lg:p-8 
+         opacity-0 pointer-events-none z-10 transition">
+   <div class="bg-white/90 rounded-2xl p-6 sm:p-8 shadow-xl text-center text-[#FFC502] font-bold text-lg sm:text-xl lg:text-2xl leading-snug">
+    Another trip around the sun… still no speed limit on your craziness 🚀😂
+  </div>
+
+  <div class="bg-white/90 rounded-2xl p-6 sm:p-8 shadow-xl text-center text-[#FFC502] font-bold text-lg sm:text-xl lg:text-2xl leading-snug">
+    Happy Cake Day! 🍰 (yes, calories don’t count today 😏)
+  </div>
+
+  <div class="bg-white/90 rounded-2xl p-6 sm:p-8 shadow-xl text-center text-[#FFC502] font-bold text-lg sm:text-xl lg:text-2xl leading-snug">
+    You’re aging like fine wine… except you laugh at memes like a 12-year-old 🤭
+  </div>
+
+  <div class="bg-white/90 rounded-2xl p-6 sm:p-8 shadow-xl text-center text-[#FFC502] font-bold text-lg sm:text-xl lg:text-2xl leading-snug">
+    Happy Birthday, Drama Queen 👑 (may your tantrums be short & presents be big 🎁)
+  </div>
+
+  <div class="bg-white/90 rounded-2xl p-6 sm:p-8 shadow-xl text-center text-[#FFC502] font-bold text-lg sm:text-xl lg:text-2xl leading-snug">
+    Cheers to surviving me for another year 🥂 (you deserve a medal 🏅)
+  </div>
+
+  <div class="bg-white/90 rounded-2xl p-6 sm:p-8 shadow-xl text-center text-[#FFC502] font-bold text-lg sm:text-xl lg:text-2xl leading-snug">
+    You officially leveled up! 🕹️ May your XP be full of laughter & snacks 🍕
+  </div>
+
+  <div class="bg-white/90 rounded-2xl p-6 sm:p-8 shadow-xl text-center text-[#FFC502] font-bold text-lg sm:text-xl lg:text-2xl leading-snug">
+    Aging is mandatory, growing up is optional — luckily you chose “optional” 😂🎉
+  </div>
+
+  <div class="bg-white/90 rounded-2xl p-6 sm:p-8 shadow-xl text-center text-[#FFC502] font-bold text-lg sm:text-xl lg:text-2xl leading-snug">
+    May your WiFi be strong, your memes be funny, and your cake extra big 🍰🤣
+  </div>
+
+  <div class="bg-white/90 rounded-2xl p-6 sm:p-8 shadow-xl text-center text-[#FFC502] font-bold text-lg sm:text-xl lg:text-2xl leading-snug">
+    Another year closer to being that cool old person who tells crazy stories 😎🔥
+  </div>
+
+</div>
+
+
+  <script>
+    (function () {
+      var $book = $("#flipbook");
+      var endingTriggered = false;
+
+      $book.turn({
+       width:800,
+        height: 500,
+        autoCenter: true,
+        display: 'double',
+        elevation: 50,
+        gradients: true,
+      });
+
+      $("#nextBtn").on("click", () => $book.turn("next"));
+      $("#prevBtn").on("click", () => $book.turn("previous"));
+
+      function updateIndicator(page) {
+        var total = $book.turn("pages");
+        $("#pageIndicator").text("Page " + page + " / " + total);
+      }
+      updateIndicator($book.turn("page"));
+
+      $book.bind("turned", function(e, page){
+        updateIndicator(page);
+        if (!endingTriggered && page === $book.turn("pages")) {
+          endingTriggered = true;
+          endSequence();
+        }
+      });
+
+      function endSequence() {
+        launchBalloons(15);
+        setTimeout(() => {
+          popBalloons();
+          document.getElementById("messagesGrid").style.opacity = "1";
+          confetti({ particleCount: 200, spread: 120, origin: { y: 0.7 } });
+        }, 3000);
+      }
+
+      function launchBalloons(count){
+        var layer = document.getElementById("balloonLayer");
+        for (let i=0;i<count;i++){
+          let b=document.createElement("div");
+          b.className="balloon";
+          b.style.left=(Math.random()*90+5)+"%";
+          b.style.background=randomColor();
+          b.style.setProperty("--dur",(3+Math.random()*2)+"s");
+          layer.appendChild(b);
+        }
+      }
+      function popBalloons(){
+        document.querySelectorAll(".balloon").forEach((b,i)=>{
+          setTimeout(()=>b.classList.add("pop"),i*50);
+        });
+      }
+      function randomColor(){
+        let colors=["#FFC502","#FFF363","#FFBD00","#111111","#26241F","#757575"];
+        return colors[Math.floor(Math.random()*colors.length)];
+      }
+    })();
+  </script>
+</body>
+</html>
