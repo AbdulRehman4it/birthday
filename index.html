@@ -90,6 +90,66 @@
   }
 </script>
 
+<!-- PRELOADER -->
+<div id="preloader" class="fixed inset-0 flex flex-col items-center justify-center bg-black z-50">
+  <!-- Glowing Lights -->
+  <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
+    <div class="absolute w-80 h-80 rounded-full blur-3xl opacity-30 animate-pulse" style="background:#FFC502"></div>
+    <div class="absolute w-96 h-96 rounded-full blur-3xl opacity-30 animate-ping" style="background:#FFF363"></div>
+    <div class="absolute w-[28rem] h-[28rem] rounded-full blur-3xl opacity-30 animate-pulse" style="background:#FFBD00"></div>
+  </div>
+
+  <!-- Balloons -->
+  <div class="relative flex gap-6 mb-8">
+    <div class="w-10 h-16 bg-[#FFC502] rounded-full animate-bounce"></div>
+    <div class="w-10 h-16 bg-[#FFF363] rounded-full animate-bounce delay-300"></div>
+    <div class="w-10 h-16 bg-[#FFBD00] rounded-full animate-bounce delay-500"></div>
+  </div>
+
+  <!-- Firecrackers (Confetti Effect) -->
+  <div class="absolute w-full h-full overflow-hidden pointer-events-none">
+    <span class="confetti" style="left:10%; background:#FFC502"></span>
+    <span class="confetti" style="left:30%; background:#FFF363"></span>
+    <span class="confetti" style="left:50%; background:#FFBD00"></span>
+    <span class="confetti" style="left:70%; background:#FFC502"></span>
+    <span class="confetti" style="left:90%; background:#FFBD00"></span>
+  </div>
+
+  <!-- Text -->
+  <h1 class="text-4xl md:text-6xl font-bold text-[#FFC502] animate-pulse drop-shadow-lg">
+   😜 Not GOing To WIsh You dont Worry 😜
+  </h1>
+</div>
+
+<style>
+/* Confetti animation */
+.confetti {
+  position: absolute;
+  top: -10px;
+  width: 8px;
+  height: 16px;
+  animation: fall 3s linear infinite;
+}
+
+.confetti:nth-child(2) { animation-delay: 0.3s; }
+.confetti:nth-child(3) { animation-delay: 0.6s; }
+.confetti:nth-child(4) { animation-delay: 0.9s; }
+.confetti:nth-child(5) { animation-delay: 1.2s; }
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+</style>
+
+<script>
+  // Hide preloader after 3 seconds
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("preloader").style.display = "none";
+    }, 7000);
+  });
+</script>
 
 
   <!-- Background fireworks (SVG circles blinking) -->
