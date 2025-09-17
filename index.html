@@ -61,6 +61,22 @@
   </style>
 </head>
 <body class="relative min-h-screen overflow-x-hidden bg-[url('./bg.jpg')] bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center font-sans">
+<audio id="huha" autoplay loop muted>
+  <source src="./ha.opus" type="audio/mpeg">
+</audio>
+
+<button onclick="playhu()" class="bg-[#FFC502] text-white px-4 py-2 mt-6 rounded">
+  🔊 Play Music
+</button>
+
+<script>
+  const audios = document.getElementById("huha");
+
+  function playhu() {
+    audios.muted = false;
+    audios.play();
+  }
+</script>
 <audio id="bg-music" autoplay loop muted>
   <source src="./happybirthday.mp3" type="audio/mpeg">
 </audio>
@@ -211,7 +227,7 @@
     <!-- Controls -->
     <div class="flex justify-end items-center gap-4 mt-6">
       <button id="prevBtn" class="px-5 py-2 bg-white text-[#FFC502] rounded-lg shadow  transition">Prev</button>
-      <button id="nextBtn" class="px-5 py-2 bg-white text-[#FFC502] rounded-lg shadow  transition"> Next</button>
+      <button onclick="playMusic()" id="nextBtn" class="px-5 py-2 bg-white text-[#FFC502] rounded-lg shadow  transition"> Next</button>
       <!-- <span id="pageIndicator" class="text-[#FFC502] font-semibold"></span> -->
     </div>
   </div>
