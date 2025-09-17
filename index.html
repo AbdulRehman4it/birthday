@@ -373,12 +373,17 @@
       });
 
       function endSequence() {
-        launchBalloons(15);
-        setTimeout(() => {
-          popBalloons();
-          document.getElementById("messagesGrid").style.opacity = "1";
-          confetti({ particleCount: 200, spread: 120, origin: { y: 0.7 } });
-        }, 3000);
+         // Delay before launching balloons (e.g., 2 seconds)
+  setTimeout(() => {
+    launchBalloons(15);
+
+    // Then wait 5 seconds before popping balloons + showing messages
+    setTimeout(() => {
+      popBalloons();
+      document.getElementById("messagesGrid").style.opacity = "1";
+      confetti({ particleCount: 200, spread: 120, origin: { y: 0.7 } });
+    }, 3000);
+  }, 5000); 
       }
 
       function launchBalloons(count){
