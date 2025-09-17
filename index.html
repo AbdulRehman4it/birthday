@@ -65,24 +65,21 @@
   <source src="./happybirthday.mp3" type="audio/mpeg">
 </audio>
 
+<button onclick="playMusic()" class="bg-[#FFC502] text-white px-4 py-2 rounded">
+  🔊 Play Music
+</button>
+
 <script>
-  window.addEventListener("click", () => {
-    const audio = document.getElementById("bg-music");
-    audio.muted = false; // unmute after first click anywhere
-  }, { once: true });
-   const audio = document.getElementById("bg-music");
-  
-  // Set volume between 0.0 (silent) and 1.0 (full volume)
-  audio.volume = 0.5;
+  const audio = document.getElementById("bg-music");
+
+  function playMusic() {
+    audio.muted = false;
+    audio.play();
+  }
 </script>
 
- 
 
-<audio autoplay loop>
- 
-  <source src="./ha.opus" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+
   <!-- Background fireworks (SVG circles blinking) -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none">
 <!-- 1 -->
